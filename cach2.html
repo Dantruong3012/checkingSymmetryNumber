@@ -1,0 +1,44 @@
+<!--Cách 2 dùng để quy -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checking if it's a symmetry number</title>
+  </head>
+  <body>
+    <form action="#" onsubmit="check(event)">
+      <input type="number" id="userNumber" placeholder="Enter your number" />
+      <button type="submit">Check</button>
+    </form>
+    <div id="displayResult"></div>
+    <script>
+      const inputNumber = document.getElementById("userNumber");
+      const displayResult = document.getElementById("displayResult");
+
+      function isPalindromeNumber(number) {
+        const str = String(number);
+        function checkLeftToRight(left, right) {
+          if (str[left] !== str[right]) return false;
+          if (left >= right) return true;
+          return check(left + 1, right - 1);
+        }
+        return checkLeftToRight(0, str.length - 1);
+      }
+      function check() {
+        event.preventDefault();
+        const number = inputNumber.value;
+        if (number == "") {
+          alert("Enter number please!");
+          return;
+        }
+
+        if (isPalindromeNumber(number)) {
+          displayResult.innerHTML = `${number} is  a symmetry number!`;
+        } else {
+          displayResult.innerHTML = `${number} is not a symmetry number!`;
+        }
+      }
+    </script>
+  </body>
+</html>
